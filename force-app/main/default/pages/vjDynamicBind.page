@@ -1,5 +1,5 @@
 <apex:page docType="html-5.0" showHeader="false" applyHtmlTag="false" applyBodyTag="false">
-    <html xmlns:v-bind="http://fake.org/fake">
+    <html xmlns:v-bind="http://fake.org/fake" xmlns:v-if="http://fake.org/fake" xmlns:v-for="http://fake.org/fake">
 
     <head>
         <title>My second Vue app</title>
@@ -11,13 +11,29 @@
             <span v-bind:title="message">
                 Hover your mouse over me for a few seconds to see my dynamically bound title!
             </span>
+            <br/>
+            <br/>
+            <span v-if="seen">Now you see me</span>
+            <br/>
+            <br/>
+            <ol>
+                <li v-for="todo in todos">
+                    {{ todo.text }}
+                </li>
+            </ol>
         </div>
 
         <script>
             var app2 = new Vue({
                 el: '#app-2',
                 data: {
-                    message: 'You loaded this page on ' + new Date().toLocaleString()
+                    message: 'You loaded this page on ' + new Date().toLocaleString(),
+                    seen: true,
+                    todos: [
+                        { text: 'Learn JavaScript' },
+                        { text: 'Learn Vue' },
+                        { text: 'Build something awesome' }
+                    ]
                 }
             })
         </script>
