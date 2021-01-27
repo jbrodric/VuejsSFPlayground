@@ -1,5 +1,5 @@
-<apex:page showHeader="false" applyHtmlTag="false" applyBodyTag="false">
-    <html>
+<apex:page docType="html-5.0" showHeader="false" applyHtmlTag="false" applyBodyTag="false">
+    <html xmlns:v-bind="http://fake.org/fake">
 
     <head>
         <title>My second Vue app</title>
