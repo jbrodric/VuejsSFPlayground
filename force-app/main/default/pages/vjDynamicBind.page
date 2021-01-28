@@ -1,5 +1,6 @@
 <apex:page docType="html-5.0" showHeader="false" applyHtmlTag="false" applyBodyTag="false">
-    <html xmlns:v-bind="http://fake.org/fake" xmlns:v-if="http://fake.org/fake" xmlns:v-for="http://fake.org/fake">
+    <html xmlns:v-bind="http://fake.org/fake" xmlns:v-if="http://fake.org/fake" xmlns:v-for="http://fake.org/fake" xmlns:v-on="http://fake.org/fake"
+        xmlns:v-model="http://fake.org/fake">
 
     <head>
         <title>My second Vue app</title>
@@ -21,19 +22,49 @@
                     {{ todo.text }}
                 </li>
             </ol>
+            <p>{{ message2 }}</p>
+            <br/>
+            <br/>
+            <button v-on:click="reverseMessage">Reverse Message</button>
+            <br/>
+            <br/>
+            <p>{{ message3 }}</p>
+            <input v-model="message3"></input>
+            <br/>
+            <br/>
+            <ol>
+                <todo-item v-for="item in groceryList" v-bind:todo="item" v-bind:key="item.id"></todo-item>
+            </ol>
         </div>
 
         <script>
+            Vue.component('todo-item', {
+                props: ['todo'],
+                template: '<li>{{ todo.text }}</li>'
+            })
+
             var app2 = new Vue({
                 el: '#app-2',
                 data: {
                     message: 'You loaded this page on ' + new Date().toLocaleString(),
+                    message2: 'Hello Vue.js!',
+                    message3: 'Hello Vue',
                     seen: true,
                     todos: [
                         { text: 'Learn JavaScript' },
                         { text: 'Learn Vue' },
                         { text: 'Build something awesome' }
+                    ],
+                    groceryList: [
+                        { id: 0, text: 'Vegetables' },
+                        { id: 1, text: 'Cheese' },
+                        { id: 2, text: 'Whatever else humans are supposed to eat' }
                     ]
+                },
+                methods: {
+                    reverseMessage: function () {
+                        this.message2 = this.message2.split('').reverse().join('');
+                    }
                 }
             })
         </script>
